@@ -1,0 +1,233 @@
+body{
+	background: #c8ccce;
+	height: 100%;
+	width: 99%;
+}
+.header{
+	background: #ff3c00;
+	width: 98%;
+	height: 110px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top:1%;
+	border-radius: 20px;
+}
+a {
+	color: #fff;
+  	text-decoration: none;
+}
+.nav{
+	margin-right:20px;
+	padding-top: 30px;
+	float: right;
+    font-family: monospace;
+}
+
+ul {
+  	background: #ff3c00;
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+}
+
+li {
+	background: #ff3c00;
+    display: block;
+    float: right;
+    padding: 1rem;
+    position: relative;
+    text-decoration: none;
+  	transition-duration: 0.5s;
+  	z-index: 100;
+}
+li:hover {
+	background: #c8ccce;
+	cursor: pointer;
+}
+
+.dropdown {
+    background: #ff3c00;
+    visibility: hidden;
+  	opacity: 0;
+  	min-width: 5rem;
+    position: absolute;
+  	transition: all 0.5s ease;
+  	margin-top: 1rem;
+    left: 0;
+  	display: none;
+}
+
+ul li:hover > ul,
+.dropdown:hover {
+  visibility: visible;
+  opacity: 1;
+  display: block;
+}
+
+ul li ul li {
+	text-align: center;
+  	width: 100%;
+}
+
+.smalllogo{
+	float: left;
+	margin-top:5px;
+	margin-bottom: 5px;
+	margin-left:15px;
+	border-radius: 20px;
+}
+.filmSearchDiv{
+	float: right;
+	margin-right: 15px;
+	height: 110px;
+}
+
+.filmSearch{
+	margin-top:45px;
+	background:#ff3c00; 
+  	border: none;
+    border-bottom: 2px solid #c8ccce;
+    height: 20px;
+}
+.filmSearch:hover{
+	margin-top:45px;
+	background:#c8ccce; 
+  	border: none;
+    border-bottom: 2px solid #c8ccce;
+    height: 20px;
+}
+filmSearch{
+	margin-top:45px;
+	background:#ff3c00; 
+  	border: none;
+    border-bottom: 2px solid #c8ccce;
+    height: 20px;
+}
+.searchBtn{
+	background: #ff3c00;
+    float: center;
+    padding: 4px;
+    position: relative;
+    transition-duration: 0.5s;
+  	z-index: 100;
+  	border: 1px black solid;
+    color: white;
+}
+.searchBtn:hover{
+	background: #c8ccce;
+	cursor: pointer;
+}
+
+.footer{
+	background: #ff3c00;
+	width: 98%;
+	height: 45px;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 20px;
+
+}
+.copy{
+	padding-top: 15px;
+	padding-left: 30px;
+	float: left;
+
+}
+.media{
+	float: right;
+	padding-right: 15px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.adder{
+	height: 15%;
+	width: 25%;
+	background: #ff3c00;
+	margin-top:2%;
+	margin-bottom:2%;
+	margin-left:auto;
+	margin-right:auto;
+	padding-top: 2%;
+	padding-bottom: 2%;
+	border-radius: 20px;
+}
+.add{
+	background:#ff3c00; 
+	border: none;
+  	border-bottom: 2px solid #c8ccce;
+  	width: 80%;
+  	height: 20px;
+}
+.add:hover{
+	background: #c8ccce;
+	border: none;
+  	border-bottom: 2px solid #c8ccce;
+  	width: 80%;
+  	height: 20px;
+}
+.addBtn{
+	background: #ff3c00;
+    float: center;
+    padding: 1rem;
+    position: relative;
+    transition-duration: 0.5s;
+  	z-index: 100;
+  	border: 1px black solid;
+  	color: white;
+ }
+ .addBtn:hover{
+ 	background: #c8ccce;
+	height: 100%;;
+    cursor: pointer;
+ }
+h2{
+ 	color: white;
+}
+input::-moz-placeholder { color: white; }
+input::-webkit-input-placeholder { color: white; }
+
+.filmHead{
+	margin-top:10px;
+	width: 98%;
+	height: 300px;
+	background: #ff3c00;
+	border-radius: 20px;
+}
+.poster{
+	height: 288px;
+	width: 162px;
+	float: left;
+	padding-left:30px;
+	padding-top:18px;
+	padding-bottom: auto;
+}
+.name{
+	padding-right:40px;
+	padding-left:100px;
+	padding-top: 10px;
+	width: 50%;
+}
+.filmCenter{
+	margin-top:10px;
+	width: 98%;
+	height: 400px;
+	background: #ff3c00;
+	border-radius: 20px;
+	margin-bottom:10px;
+}
+h1{
+	color:white;
+}
+iframe{
+padding-top:20px;
+padding-bottom: 20px;
+}
+p{
+	color: white;
+}
+.filmDescription{
+	font-size: 20px;
+	padding-right:40px;
+	padding-left:100px;
+	width: 60%;
+}
