@@ -1,0 +1,33 @@
+body{
+	background: #c8ccce;
+}
+.reg{
+	text-align: center;
+	border-radius: 20px;
+	background: #ff3c00; 
+	position: absolute; 
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height:250px;
+  margin: -125px 0 0 -200px;
+
+}
+a {
+	background: #ff3c00;
+    display: block;
+    padding: 1rem;
+    position: relative;
+    text-decoration: none;
+  	transition-duration: 0.5s;
+  	z-index: 100;
+  	text-decoration: none;
+  	color: white;
+}
+a:hover {
+	background: #c8ccce;
+	cursor: pointer;
+}
+ h2{
+  color: white;
+ }
