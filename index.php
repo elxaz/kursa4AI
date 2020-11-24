@@ -14,11 +14,7 @@
 		$posters[$key] = $films[$key]['poster'];
 		
 	}
-
-	
-
-
- ?>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,9 +27,14 @@
 </head>
 <body>
 	<div class="header" align="center">
-		<img src="img/smalllogo.png" class="smalllogo">
-		<a href="cgi/index.php"><img src="img/login.png" class="loginImg"></a>
 
+		<table border="0" width="100%">
+		<th>
+		<a href="index.php"><img src="img/smalllogo.png" class="smalllogo"></a>
+		<a href="cgi/index.php"><img src="img/login.png" class="loginImg"></a>
+		</th>
+
+		<th>
 		<div class="dropdown">
 		<button onclick="myFunction()" class="dropbtn">Фильтры</button>
 		  <div id="myDropdown" class="dropdown-content">
@@ -49,21 +50,35 @@
 		    <a href="#custom">Custom</a>
 		    <a href="#support">Support</a>
 		    <a href="#tools">Tools</a>
-
-
 		  </div>
 		</div>
+		</th>
+		</table>
 		<script>
 		function myFunction() {
 		    document.getElementById("myDropdown").classList.toggle("show");
 		}
 		</script>
 	</div>
-
-	<div class="footer">
-		<div class="copy">&#169; ICS-media <?php echo date('Y'); ?></div>
-		<span class="media"><a href=""><img src="../img/inst.png"></a> <a href="https://t.me/joinchat/KIDuQh0XguS1gSAbg-YkWg"><img src="../img/telega.png"></a></span>
+	<br>
+	<div align="center" class="mainWindow">
+	<?php 
+		require_once "cgi/show.php";
+	 ?>
 	</div>
+	<br>
+	<div class="footer">
+		<table>
+		<th>
+		<div align="left" class="copy">&#169; ICS-media <?php echo date('Y'); ?></div>
+		</th>
+		<th>
+		<span class="media"><a href=""><img src="../img/inst.png"></a> <a href="https://t.me/joinchat/KIDuQh0XguS1gSAbg-YkWg"><img src="../img/telega.png"></a></span>
+		</th>
+		</table>
+	</div>
+
+
 
 
 </body>
