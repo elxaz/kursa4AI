@@ -1,3 +1,15 @@
+<?php //для того что бы никто кроме админа не мог добавлять фильмы
+	require_once 'db.php';
+
+	$user = R::findOne('users', 'login = ?', array('admin'));
+
+	if ($_SESSION['logged_user'] != $user) {
+		header("Location:../index.php");
+		
+	}
+
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,34 +25,7 @@
 
 	<div class="header" align="center">
 		<img src="../img/smalllogo.png" class="smalllogo">
-		<div class="nav" align="center">
-			<nav role = "navigation">
-					<ul>
-						<li><a href="">Случайный фильм</a></li>
-						<li><a href="">Новинки</a></li>
-						<li><a href="">Выбор по режисеру</a></li>
-						<li><a href="">Жанры</a>
-							<ul class="dropdown">
-									<li><a href="">Комедия</a></li>
-									<li><a href="">Сериалы</a></li>
-									<li><a href="">Боевик</a></li>
-									<li><a href="">Мелодрама</a></li>
-							  		<li><a href="">Ужасы</a></li>
-							  		<li><a href="">Драма</a></li>
-							  		<li><a href="">Мультфильм</a></li>
-							  		<li><a href="">Приключения</a></li>
-							  		<li><a href="">. . .</a></li>	
-							</ul>
-						</li>		
-						<li><a href="">Выбор по стране</a></li>
-						<li><a href="">Выбор по году</a></li>
-						<li><a href="index.php">Вход</a></li>
-					</ul>
-			</nav>
-		</div>
-	</div>
-
-	 <div class="adder" align="center">
+	<div class="adder" align="center">
 	 	<h2>Adding film</h2>
 	 	<form method="POST">
 	 	 	<input type="text" name="filmName" align="center" placeholder="Name" class="add"><br><br>
@@ -70,7 +55,7 @@
 	</div>
 
 	 <?php 	
-	 	require_once 'db.php';
+	 	
 	 	@$filmName = $_REQUEST['filmName'];
 	 	@$filmURL = $_REQUEST['filmURL'];
 	 	@$filmGenre = $_REQUEST['genre'];
@@ -83,8 +68,8 @@
 
 	 	//переменная которая используеться для проверки на существования такого фильма в базе данных
 	 	@$isFilm = R::findOne('film', 'name = ?', [$filmName]);
-	 	//проверка на пустоту формы и на то есть ли такой фильм в базе данных
-	 	if (!empty($filmName)&&!empty($filmURL)&&$filmName!=$isFilm['name']) {
+	 	//проверка на пустоту формы 
+	 	if (!empty($filmName)&&!empty($filmURL)) {
 	 		// Добавление фильма
 	 		$film = R::dispense('film');
 			$film->name = $filmName;

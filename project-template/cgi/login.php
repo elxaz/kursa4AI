@@ -1,11 +1,12 @@
 <?php 
-	require 'db.php';
+	require_once 'db.php';
 
 	$data = $_POST;
 	if ( isset($data['do_login']) )
 	{	
 		
 		$user = R::findOne('users', 'login = ?', array($data['login']));
+
 		if ($user)
 		{	
 			//логин существует

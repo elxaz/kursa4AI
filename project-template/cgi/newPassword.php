@@ -1,3 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="../styles/newPassword.css">
+	<link rel="shortcut icon" href="../img/smallest.png" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="../styles/error.css">
+	<title>ICS-media</title>
+</head>
+
+
 <?php 
 	require_once 'db.php';
 
@@ -20,6 +32,11 @@
 		//начался скрипт после нажатии на кнопку 
 		$user = R::findOne('users', 'email = ?', array($data['email']));//взяли из бд email пользователя
 		
+		
+		$email = $user['email'];
+		$name = $user['name'];
+		
+
 		if(isset($user)){
 			//если запись найдена
 			//делаем новый пароль
@@ -50,7 +67,7 @@
 
 			    //Recipients
 			    $mail->setFrom('ics.media.original@gmail.com', 'ICS-media');
-			    $mail->addAddress('dumassick@gmail.com', 'Joe User');     // Add a recipient
+			    $mail->addAddress($email, $name);     // Add a recipient
 			    // $mail->addAddress('ellen@example.com');               // Name is optional
 			    $mail->addReplyTo('info@example.com', 'Information');
 			    
@@ -61,10 +78,15 @@
 			   
 
 			    $mail->send();
-			    header('Location: login.php');
-			    echo 'Message has been sent';
+
+			    echo "	<script>
+							alert(\"Новый пароль был отправлен Вам на почту.\");
+						</script>";
+			    echo "<script>window.location.href = \"login.php\"</script>";
+			    
+
 			} catch (Exception $e) {
-		    	echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+		    	//echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 			}
 
 			
@@ -73,21 +95,14 @@
 			
 
 		}else{
-			echo "Ваш email не найден ";
+			echo "<div class=\"validation\">Ваш email не найден</div>";
+			exit();
 		}
 	}
 
  ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="../styles/newPassword.css">
-	<link rel="shortcut icon" href="../img/smallest.png" type="image/x-icon">
-	<title>ICS-media</title>
-</head>
+
 <body>
 	<div class="newPassword">
 		<h2>Восстановление пароля:</h2><br>

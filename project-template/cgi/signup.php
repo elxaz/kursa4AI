@@ -3,6 +3,35 @@
 
 	$data = $_POST;
 
+	$err = "";
+
+	if (isset($_FILES) && !empty($_FILES)) {
+		if ($_FILES['login_img']['size'] < 2000000){//ограничение по размеру
+			if (//ограничение на формат
+				$_FILES['login_img']['type'] === 'image/jpeg'
+     			||$_FILES['login_img']['type'] === 'image/png'
+     			||$_FILES['login_img']['type'] === 'image/bmp'
+      			||$_FILES['login_img']['type'] === 'image/jpg'
+			){ //Файлы прошли проверки
+					$path = '../user_login_img/'.$data['login'].'.jpg';
+					move_uploaded_file($_FILES['login_img']['tmp_name'], $path);//сохранения фотки на сервере
+			}else{
+						$err .= "Не правильный формат";	
+				}
+			}
+			else{
+				$err .= "Ваш файл не правильного размера";		
+			}
+			
+			if (!empty($err)) {
+				echo "<script>alert(\"$err\");</script>";
+			}
+		}
+	unset($_FILES);	
+
+
+	
+
 	//если кликнули на button
 	if ( isset($data['do_signup']) )
 	{
@@ -41,15 +70,18 @@
 		}
                
 
-		if ( empty($errors) )
+		if ( empty($errors) && empty($err) )
 		{
 			//ошибок нет, теперь регистрируем
 			$user = R::dispense('users');
+			$user->avatar = $path;
 			$user->login = $data['login'];
 			$user->email = $data['email'];
 			$user->age = $data['age'];
 			$user->password = $data['password'];
 			R::store($user);
+			echo "<script>alert(\"Вы успешно зарегестрировались!\"); location=\"index.php\";</script>";
+			$_SESSION['logged_user'] = $user;
 			header("Location:../index.php");
 		}else
 		{
@@ -72,14 +104,19 @@
 <body>
 	<div class="signup">
 		<h2>Регистрация</h2>
-		<form action="../cgi/signup.php" method="POST">
-		<input type="text" name="login" placeholder="Введите логин" value="<?php echo @$data['login']; ?>"><br><br>
-		<input type="email" name="email" placeholder="Введите e-mail" value="<?php echo @$data['email']; ?>"><br><br>
-		<input type="text" name="age" placeholder="Введите возраст" value="<?php echo @$data['age']; ?>"><br><br>
-		<input type="password" name="password" placeholder="Введите пароль" value="<?php echo @$data['password']; ?>"><br><br>
-		<input type="password" name="password_2" placeholder="Повторите пароль" value="<?php echo @$data['password_2']; ?>"><br/><br/>
+		<form action="../cgi/signup.php" method="POST" enctype="multipart/form-data">
+		<input type="text" name="login" placeholder="Введите логин" required="" value="<?php echo @$data['login']; ?>"><br><br>
+		<input type="email" name="email" placeholder="Введите e-mail" required="" value="<?php echo @$data['email']; ?>"><br><br>
+		<input type="text" name="age" placeholder="Введите возраст" required="" value="<?php echo @$data['age']; ?>"><br><br>
+		<input type="password" name="password" placeholder="Введите пароль" required="" value="<?php echo @$data['password']; ?>"><br><br>
+		<input type="password" name="password_2" placeholder="Повторите пароль" required="" value="<?php echo @$data['password_2']; ?>"><br/><br/>
+		<label for="file">Выберите аватара (не более 2мб):</label>
+		<input type="file" name="login_img" required="" >
+		<br/><br/>
 
 		<button type="submit" name="do_signup">Регистрация</button>
+
+
 
 		<h1><?php echo @"$name"; ?></h1>
 	</div>

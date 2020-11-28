@@ -1,10 +1,21 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="../styles/error.css">
+</head>
+
 <?php 
 require 'libs/rb.php';
-R::setup( 'mysql:host=ec2-54-170-123-247.eu-west-1.compute.amazonaws.com:5432;dbname=dcp0isoi16tdma','frbgbjargntncg', 'f51cd8501cc1d3d8c410b56c0d4302427abb1f3c183f1d443220ac71fe83f6a4' ); 
+R::setup( 'mysql:host=localhost;dbname=ics-media','root2504','E8e5L6x6Q4k4F2'); 
 
 if ( !R::testconnection() )
 {
-		exit ('Нет соединения с базой данных');
+		echo "<div class=\"validation\">Извините наш сервис не работает. Обратитесь на email : ics.media.original@gmail.com</div>";
+		exit ();
 }
 
 session_start();
+
+?>
+
+</body>
+</html>

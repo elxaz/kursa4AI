@@ -12,6 +12,12 @@
     margin: -200px 0 0 -200px;
 }
 
+label{
+  color: white;
+  float: left;
+  margin-left: 10%;
+}
+
 body{
 	background: #c8ccce;
 }

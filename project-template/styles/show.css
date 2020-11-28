@@ -1,0 +1,25 @@
+.plates{
+	height: 357px;
+	width: 212px;
+	background: grey;
+
+}
+.plates:hover{
+	height: 357px;
+	width: 212px;
+	background: darkgrey;
+	cursor: pointer;
+}
+
+.posterInDiv{
+	margin-top: 5.5px;
+	margin-bottom: 5.5px;
+	margin-left: 5.5px;
+}
+
+.filmNameDiv{
+	text-align: center;
+	color: white;
+	margin-bottom: 2px;
+}
+
