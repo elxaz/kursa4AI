@@ -1,33 +1,257 @@
 body{
-	background: #c8ccce;
+	background: rgb(83,139,136);
 }
+.login{
+  text-align: center;
+  border-radius: 20px;
+  background: grey; 
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height:290px;
+  margin: -125px 0 0 -200px;
+}
+.login a {
+  background: grey;
+  display: block;
+  padding: 1rem;
+  position: relative;
+  text-decoration: none;
+  transition-duration: 0.5s;
+  z-index: 100;
+  text-decoration: none;
+  color: white;
+}
+.login a:hover {
+  background: #c8ccce;
+  cursor: pointer;
+}
+
+
+
+
+
+.year{
+  text-align: center;
+  border-radius: 20px;
+  background: grey; 
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height:220px;
+  margin: -125px 0 0 -200px;
+}
+.year input {
+  margin-left: auto;
+  margin-right: auto;
+  background: grey;
+  display: block;
+  padding: 1rem;
+  position: relative;
+  text-decoration: none;
+  transition-duration: 0.5s;
+  z-index: 100;
+  text-decoration: none;
+  color: white;
+}
+.year input:hover {
+  background: #c8ccce;
+  cursor: pointer;
+}
+.year select {
+  margin-left: auto;
+  margin-right: auto;
+  background: grey;
+  display: block;
+  padding: 1rem;
+  border:1px black solid;
+  position: relative;
+  text-decoration: none;
+  transition-duration: 0.5s;
+  z-index: 100;
+  text-decoration: none;
+  color: white;
+}
+.year select:hover {
+  background: rgb(83,139,136);
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+.newPassword{
+  text-align: center;
+  border-radius: 20px;
+  background: grey; 
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height:200px;
+  margin: -125px 0 0 -200px;
+}
+.newPassword a {
+  background: grey;
+  display: block;
+  padding: 1rem;
+  position: relative;
+  text-decoration: none;
+  transition-duration: 0.5s;
+  z-index: 100;
+  text-decoration: none;
+  color: white;
+}
+.newPassword a:hover {
+  background: #c8ccce;
+  cursor: pointer;
+}
+.newPass{
+  margin-left: auto;
+  margin-right: auto;
+  background: grey;
+  display: block;
+  padding: 1rem;
+  position: relative;
+  text-decoration: none;
+  transition-duration: 0.5s;
+  z-index: 100;
+  text-decoration: none;
+  color: white;
+}
+.newPass:hover{
+  background: #c8ccce;
+  cursor: pointer;
+}
+
+
 .reg{
 	text-align: center;
 	border-radius: 20px;
-	background: #ff3c00; 
+	background: grey; 
 	position: absolute; 
   top: 50%;
   left: 50%;
   width: 400px;
-  height:250px;
+  height:210px;
   margin: -125px 0 0 -200px;
-
 }
-a {
-	background: #ff3c00;
-    display: block;
-    padding: 1rem;
-    position: relative;
-    text-decoration: none;
-  	transition-duration: 0.5s;
-  	z-index: 100;
-  	text-decoration: none;
-  	color: white;
+.reg a {
+	background: grey;
+  display: block;
+  padding: 1rem;
+  position: relative;
+  text-decoration: none;
+  transition-duration: 0.5s;
+  z-index: 100;
+  text-decoration: none;
+  color: white;
 }
-a:hover {
+.reg a:hover {
 	background: #c8ccce;
 	cursor: pointer;
 }
+input{
+   border-box: box-sizing;
+    background-image: url('searchicon.png');
+    background-position: 14px 12px;
+    background-repeat: no-repeat;
+    font-size: 16px;
+    padding: 14px 20px 12px 45px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+}
+.do_login{
+  margin-left: auto;
+  margin-right: auto;
+  background: grey;
+  display: block;
+  padding: 1rem;
+  position: relative;
+  text-decoration: none;
+  transition-duration: 0.5s;
+  z-index: 100;
+  text-decoration: none;
+  color: white;
+  width: 30%;
+}
+.do_login:hover{
+  background: #c8ccce;
+  cursor: pointer;
+}
+
+.countryBtn{
+  margin-left: auto;
+  margin-right: auto;
+  background: grey;
+  display: block;
+  padding: 1rem;
+  position: relative;
+  text-decoration: none;
+  transition-duration: 0.5s;
+  z-index: 100;
+  text-decoration: none;
+  color: white;
+  float: center;
+  width: 30%;
+}
+.countryBtn:hover{
+  background: #c8ccce;
+  cursor: pointer;
+}
+
  h2{
   color: white;
  }
+
+
+
+ .signup{
+  text-align: center;
+  border-radius: 20px;
+  background: grey; 
+  position: absolute; 
+  top: 37%;
+  left: 50%;
+  width: 400px;
+  height:500px;
+  margin: -125px 0 0 -200px;
+}
+.signup a {
+  background: grey;
+  display: block;
+  padding: 1rem;
+  position: relative;
+  text-decoration: none;
+  transition-duration: 0.5s;
+  z-index: 100;
+  text-decoration: none;
+  color: white;
+}
+.signup a:hover {
+  background: #c8ccce;
+  cursor: pointer;
+}
+.signupBtn{
+  margin-left: auto;
+  margin-right: auto;
+  background: grey;
+  display: block;
+  padding: 1rem;
+  position: relative;
+  text-decoration: none;
+  transition-duration: 0.5s;
+  z-index: 100;
+  text-decoration: none;
+  color: white;
+}
+.signupBtn:hover{
+  background: #c8ccce;
+  cursor: pointer;
+}
+

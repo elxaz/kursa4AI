@@ -5,8 +5,8 @@ h2{
 body{
 	background: #c8ccce;
 }
-a {
-	background: #ff3c00;
+.avt a {
+	background: grey;
   display: block;
   padding: 1rem;
   position: relative;
@@ -16,7 +16,7 @@ a {
   text-decoration: none;
   color: white;
 }
-a:hover {
+.avt a:hover {
 	background: #c8ccce;
 	cursor: pointer;
 
@@ -24,11 +24,11 @@ a:hover {
 .avt{
 	text-align: center;
 	border-radius: 20px;
-	background: #ff3c00; 
+	background: grey; 
 	position: absolute; 
   top: 50%;
   left: 50%;
   width: 400px;
-  height: 350px;
+  height: 370px;
   margin: -160px 0 0 -200px;
 }

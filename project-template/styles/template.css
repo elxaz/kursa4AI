@@ -1,7 +1,7 @@
 body{
 	background: rgb(83,139,136);
-    width: 100%;
-    height: 100%;
+    width: 99%;
+    height: 99%;
 }
 .headerTable{
     width: 100%;
@@ -34,14 +34,8 @@ body{
 }
 .show{
     width: 100%;
-}
-
-.mainWindow{
-    width: 804px;
-    background: grey;
     margin-right: auto;
     margin-left: auto;
-
 }
 
 .comment{
@@ -82,6 +76,12 @@ body{
     padding: 10px 10px 10px 10px;
     border: none;
     border-bottom: 1px solid #ddd;
+}
+h2{
+    color: white;
+}
+p{
+    color: white;
 }
 #myInputBtn:hover{
 	background-color: #ddd;

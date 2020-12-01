@@ -5,7 +5,8 @@
 
 	$err = "";
 
-	if (isset($_FILES) && !empty($_FILES)) {
+	if (isset($_FILES['login_img']['name']) && !empty($_FILES['login_img']['name'])) {
+		var_dump($_FILES);
 		if ($_FILES['login_img']['size'] < 2000000){//ограничение по размеру
 			if (//ограничение на формат
 				$_FILES['login_img']['type'] === 'image/jpeg'
@@ -15,18 +16,21 @@
 			){ //Файлы прошли проверки
 					$path = '../user_login_img/'.$data['login'].'.jpg';
 					move_uploaded_file($_FILES['login_img']['tmp_name'], $path);//сохранения фотки на сервере
-			}else{
-						$err .= "Не правильный формат";	
+			}
+			else{
+						$err .= "Не правильный формат. ";	
 				}
 			}
 			else{
-				$err .= "Ваш файл не правильного размера";		
+				$err .= "Ваш файл не правильного размера. ";	
 			}
 			
 			if (!empty($err)) {
 				echo "<script>alert(\"$err\");</script>";
 			}
-		}
+			}else{
+				$path = '../user_login_img/stock.png';
+			}
 	unset($_FILES);	
 
 
@@ -85,7 +89,7 @@
 			header("Location:../index.php");
 		}else
 		{
-			echo '<div id="errors" style="color:red;">' .array_shift($errors). '</div><hr>';
+			echo '<div id="errors" style="color:red;">' . array_shift($errors). '</div><hr>';
 		}
 
 	}
@@ -97,11 +101,44 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="../styles/singup.css">
+	<link rel="stylesheet" type="text/css" href="../styles/reg.css">
+	<link rel="stylesheet" type="text/css" href="../styles/template.css">
 	<link rel="shortcut icon" href="../img/smallest.png" type="image/x-icon">
 	<title>ICS-media</title>
 </head>
 <body>
+	<div class="header" align="center">
+
+		<table border="0" width="100%" class="headerTable" >
+		<th>
+		<a href="../index.php"><img src="../img/smalllogo.png" class="smalllogo"></a>
+		<a href="../cgi/index.php"><img src="../img/login.png" class="loginImg"></a>
+		</th>
+
+		<th>
+		<div class="dropdown">
+		<button onclick="myFunction()" class="dropbtn">Фильтры</button>
+		  <div id="myDropdown" class="dropdown-content">
+		    <form method="GET" action="cgi/search.php">
+		    	<input type="text" name="filmSearch" placeholder="Название фильма" id="myInput">
+		    	<br>
+		    	<input type="submit" name="btn" value="Поиск" id="myInputBtn">
+		    </form>
+
+		    <a href="filters/year/yearFilter.php">Фильтр по году</a>
+		    <a href="filters/genre/genreFilter.php">Фильтр по жанру</a>
+		    <a href="filters/country/countryFilter.php">Фильтр по стране</a>
+		    <a href="randomFilms.php">Что посмотреть</a>
+		  </div>
+		</div>
+		</th>
+		</table>
+		<script>
+		function myFunction() {
+		    document.getElementById("myDropdown").classList.toggle("show");
+		}
+		</script>
+	</div>
 	<div class="signup">
 		<h2>Регистрация</h2>
 		<form action="../cgi/signup.php" method="POST" enctype="multipart/form-data">
@@ -111,10 +148,10 @@
 		<input type="password" name="password" placeholder="Введите пароль" required="" value="<?php echo @$data['password']; ?>"><br><br>
 		<input type="password" name="password_2" placeholder="Повторите пароль" required="" value="<?php echo @$data['password_2']; ?>"><br/><br/>
 		<label for="file">Выберите аватара (не более 2мб):</label>
-		<input type="file" name="login_img" required="" >
+		<input type="file" name="login_img">
 		<br/><br/>
 
-		<button type="submit" name="do_signup">Регистрация</button>
+		<button class="signupBtn" type="submit" name="do_signup">Регистрация</button>
 
 
 

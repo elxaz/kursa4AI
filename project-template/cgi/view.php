@@ -6,6 +6,8 @@
  	 	$name = $film['name'];
  	 	$link = $film['link'];
  	 	$description = $film['description'];
+ 	 	$rating = $film['rating'];
+ 	 	$voises = $film['voises'];
 ?>
 	
 	<!DOCTYPE html>
@@ -36,13 +38,10 @@
 		    	<input type="submit" name="btn" value="Поиск" id="myInputBtn">
 		    </form>
 
-		    <a href="../cgi/filters/year/yearFilter.php">Фильтр по году</a>
-		    <a href="../cgi/randomFilms.php">Что посмотреть</a>
-		    <a href="#blog">Blog</a>
-		    <a href="#contact">Contact</a>
-		    <a href="#custom">Custom</a>
-		    <a href="#support">Support</a>
-		    <a href="#tools">Tools</a>
+		    <a href="filters/year/yearFilter.php">Фильтр по году</a>
+		    <a href="filters/genre/genreFilter.php">Фильтр по жанру</a>
+		    <a href="filters/country/countryFilter.php">Фильтр по стране</a>
+		    <a href="randomFilms.php">Что посмотреть</a>
 		  </div>
 		</div>
 		</th>
@@ -58,14 +57,28 @@
 		<table cellpadding="10">
 		<div class="filmHead">
 			<!-- Постер -->
-			<td>
-				<img src="<?php echo "$poster" ?>" width="189" height="255" alt="lorem">
-			</td>
+			<th>
+				<td align="center">
+					<img src="<?php echo "$poster" ?>" width="189" height="255" alt="lorem">
+					<p>Rating: <?php echo round($rating/$voises, 2); ?></p>
+				</td>
+			</th>
+			
+
 			
 			<td></td><td></td><td></td>
 			<td>
 			<!-- Имя фильма -->
 				<h1><?php echo "$name"; ?></h1>
+				<?php 
+				if (!empty($_SESSION['logged_user'])) {
+					$login = $_SESSION['logged_user']->login;
+
+					if ($login === 'admin') {
+						echo "<a href=\"deleteFilm.php?id=" . $id . "\">Delete this film</a>";
+					}
+				}
+				 ?>
 			
 			<!-- Описание фильмов -->
 			
@@ -128,11 +141,25 @@
 		  <p>
 		    <label>Комментарировать:</label>
 		    <br />
-		    <textarea name="text_comment" placeholder="Оставить комментарий" id="comment" cols="89" rows="7" required=""></textarea><!-- берем текст комментария -->
+		    <textarea name="text_comment" placeholder="Оставить комментарий" id="comment" cols="89" rows="7"></textarea><!-- берем текст комментария -->
 		    <br><br>
 		   </p>
 		  	<input type="hidden" name="user_login" value= <?php echo "\"".$login."\""; ?>><!-- берем логи пользователя -->
 		    <input type="hidden" name="film_id" value= <?php echo "\"".$id."\""; ?> ><!-- берем айди фильма -->
+		    <select name="rating">
+		    	<option disabled>Выберите оценку</option>
+		    	<option value="0">0</option>
+		    	<option value="1">1</option>
+		  		<option value="2">2</option>
+		  		<option value="3">3</option>
+		  		<option value="4">4</option>
+		  		<option value="5">5</option>
+		  		<option value="6">6</option>
+		  		<option value="7">7</option>
+		  		<option value="8">8</option>
+		  		<option value="9">9</option>
+		  		<option value="10">10</option>
+		    </select><br><br>
 		    <input type="submit" value="Отправить" >
 		</form>
 		<?php 
@@ -143,13 +170,12 @@
 		?>
 
 		
-<style type="text/css"></style>
+
 
 		
 		
 
 </div>
-
 
 
 	<div class="footer">
