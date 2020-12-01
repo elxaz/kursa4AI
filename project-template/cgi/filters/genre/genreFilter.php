@@ -26,7 +26,8 @@
 
 	 	header("Location: http://localhost:8080/cgi/show.php?$url");//посылание гет запроса	
 	}else{
-		echo "Такого жанра не найдено";
+		echo "<script>alert(\"Такого жанра не найдено. Попробуйте снова.\");</script>";
+		unset($_GET);
 	}
 
 	}

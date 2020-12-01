@@ -25,7 +25,8 @@
 
 	 	header("Location: http://localhost:8080/cgi/show.php?$url");//посылание гет запроса	
 	}else{
-		echo "Такого года не найдено";
+		echo "<script>alert(\"Такого года не найдено. Попробуйте снова.\");
+location=\"yearFilter.php\";</script>";
 	}
 
 	

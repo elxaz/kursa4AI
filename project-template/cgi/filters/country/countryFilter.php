@@ -26,7 +26,8 @@
 
 	 	header("Location: http://localhost:8080/cgi/show.php?$url");//посылание гет запроса	
 	}else{
-		echo "Такой страны не найдено";
+		echo "<script>alert(\"Такой страны не найдено. Попробуйте снова.\");</script>";
+		unset($_GET);
 	}
 
 	}
