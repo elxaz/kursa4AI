@@ -14,8 +14,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../styles/show.css">
-    <link rel="stylesheet" type="text/css" href="../styles/reg.css">
     <link rel="stylesheet" type="text/css" href="../styles/template.css">
+    <link rel="stylesheet" type="text/css" href="../styles/new_tem.css">
+    <link rel="shortcut icon" href="../img/smallest.png" type="image/x-icon">
     <title>Фильмы</title>
 </head>
 <body>
@@ -24,26 +25,15 @@
     <div class="header" align="center">
 
     <table border="0" width="100%" class="headerTable">
-    <th>
+    <td>
     <a href="../index.php"><img src="../img/smalllogo.png" class="smalllogo"></a>
     <a href="index.php"><img src="../img/login.png" class="loginImg"></a>
-    </th>
-    <th>
-    <?php 
-    if (!empty($_SESSION)) {
-      $login = $_SESSION['logged_user']->login;
-
-      if ($login === 'admin') {
-        echo "<a href=\"cgi\addFilm.php\">Add film</a>";
-      }
-    }
-    ?>
-    </th>
-    <th>
+    </td>
+    <td>
     <div class="dropdown">
     <button onclick="myFunction()" class="dropbtn">Фильтры</button>
       <div id="myDropdown" class="dropdown-content">
-        <form method="GET" action="cgi/search.php">
+        <form method="GET" action="search.php">
           <input type="text" name="filmSearch" placeholder="Название фильма" id="myInput">
           <br>
           <input type="submit" name="btn" value="Поиск" id="myInputBtn">
@@ -56,7 +46,7 @@
         
          </div>
     </div>
-    </th>
+    </td>
     </table>
     <script>
     function myFunction() {
@@ -82,18 +72,16 @@
              $id = $_GET['id'];
         }elseif(empty($_GET)){
             //берем все фильмы и строим каталог
-            $maxId = R::count( 'film' ); //всего количество фильмов
+            // $maxId = R::count( 'film' ); //всего количество фильмов
+            $maxId = R::getCol( 'SELECT `id` FROM film' );
+            $maxId = max($maxId);
             $id = [];
             for ($i=1; $i <=  $maxId; $i++) { //делаем фейковый каталог айдишек
                 $id[$i] = $i;
             }
             shuffle($id);// перемешивание элементов массива
 
-        }elseif (@$_GET['type'] == 'pages'){
-             $id = $_GET['id'];
-         }
-
-
+        }
 
         $films =[];//массив в котором будут храниться фильмы
 
@@ -117,9 +105,6 @@
         }
 
         $i = 0;
-
-        echo "<table class = \"filmtable\" align=\"center\"> ";
-        
         if (preg_match('(Android)', $_SERVER['HTTP_USER_AGENT'])
             ||preg_match('(iPod)', $_SERVER['HTTP_USER_AGENT'])
             ||preg_match('(iPhone)', $_SERVER['HTTP_USER_AGENT'])
@@ -129,6 +114,8 @@
             $num = 4;
         }
 
+        echo "<table class = \"filmtable\" align=\"center\"> ";
+        
         foreach ($posters as $key => $value) {
             if ($i >= $num) {//количество картинок в ряду
                 echo "</tr>";
@@ -138,7 +125,7 @@
                $i++;
                echo "<th>";
                echo "<div class=\"plates\">";            
-               echo "<a href=\"http://192.168.1.6:8080/cgi/view.php?id=$id[$key]\"><img src=\"$posters[$key]\" width=\"201\" height=\"300\" class = \"posterInDiv\"></a>"; 
+               echo "<a href=\"view.php?id=$id[$key]\"><img src=\"$posters[$key]\" width=\"201\" height=\"300\" class = \"posterInDiv\"></a>"; 
                echo "<xmp class = \"filmNameDiv\">$names[$key]</xmp>";
                echo "</div>";
                echo "</th>"; 

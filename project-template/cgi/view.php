@@ -8,6 +8,7 @@
  	 	$description = $film['description'];
  	 	$rating = $film['rating'];
  	 	$voises = $film['voises'];
+ 	 	$owner = $film['owner'];
 
  	 	if (preg_match('(Android)', $_SERVER['HTTP_USER_AGENT'])
 			||preg_match('(iPod)', $_SERVER['HTTP_USER_AGENT'])
@@ -27,16 +28,15 @@
 		<div class="header" align="center">
 
 		<table border="0" width="100%" class="headerTable" >
-		<th>
+		<td>
 		<a href="../index.php"><img src="../img/smalllogo.png" class="smalllogo"></a>
 		<a href="../cgi/index.php"><img src="../img/login.png" class="loginImg"></a>
-		</th>
-
-		<th>
+		</td>
+		<td>
 		<div class="dropdown">
 		<button onclick="myFunction()" class="dropbtn">Фильтры</button>
 		  <div id="myDropdown" class="dropdown-content">
-		    <form method="GET" action="cgi/search.php">
+		    <form method="GET" action="search.php">
 		    	<input type="text" name="filmSearch" placeholder="Название фильма" id="myInput">
 		    	<br>
 		    	<input type="submit" name="btn" value="Поиск" id="myInputBtn">
@@ -56,6 +56,8 @@
 		}
 		</script>
 	</div>
+	</td>
+	</table>
 
 	<table class="filmTable" align="center">
 		<!-- Постер -->
@@ -164,6 +166,12 @@
 		    </select><br><br>
 		    <input type="submit" value="Отправить" >
 		</form>
+
+		<tr>
+			<td>
+				<a href="donation.php">Пожертвовать автору</a>
+			</td>
+		</tr>
 		<?php 
 
 		}else{
@@ -173,6 +181,7 @@
 		?>
 			</td>
 		</tr>
+		
 		
 	</table>
 
@@ -201,16 +210,15 @@
 		<div class="header" align="center">
 
 		<table border="0" width="100%" class="headerTable" >
-		<th>
+		<td>
 		<a href="../index.php"><img src="../img/smalllogo.png" class="smalllogo"></a>
 		<a href="../cgi/index.php"><img src="../img/login.png" class="loginImg"></a>
-		</th>
-
-		<th>
+		</td>
+		<td>
 		<div class="dropdown">
 		<button onclick="myFunction()" class="dropbtn">Фильтры</button>
 		  <div id="myDropdown" class="dropdown-content">
-		    <form method="GET" action="cgi/search.php">
+		    <form method="GET" action="search.php">
 		    	<input type="text" name="filmSearch" placeholder="Название фильма" id="myInput">
 		    	<br>
 		    	<input type="submit" name="btn" value="Поиск" id="myInputBtn">
@@ -222,7 +230,7 @@
 		    <a href="randomFilms.php">Что посмотреть</a>
 		  </div>
 		</div>
-		</th>
+		</td>
 		</table>
 		<script>
 		function myFunction() {
@@ -247,12 +255,12 @@
 			<td></td><td></td><td></td>
 			<td>
 			<!-- Имя фильма -->
-				<h1><?php echo "$name"; ?></h1>
+				<h2><?php echo "$name"; ?></h2>
 				<?php 
+
 				if (!empty($_SESSION['logged_user'])) {
 					$login = $_SESSION['logged_user']->login;
-
-					if ($login === 'admin') {
+					if ($login === $owner||$login === "admin") {
 						echo "<a href=\"deleteFilm.php?id=" . $id . "\">Delete this film</a>";
 					}
 				}
@@ -309,7 +317,7 @@
 
 		<?php  
 		if (isset($_SESSION['logged_user'])) {
-				$login = $_SESSION['logged_user']['login'];		
+				$login = $_SESSION['logged_user']['login'];	
 
 		?>
 		<!-- Комментарии -->
@@ -338,6 +346,17 @@
 		    </select><br><br>
 		    <input type="submit" value="Отправить" >
 		</form>
+		<tr>
+			<td>
+				<label>Пожертвовать автору:</label>
+				<form method="GET" action="donation.php">
+					<input type="text" name="quantity" placeholder="Количество">
+					<input type="hidden" name="id" value=<?php echo $id; ?>>
+					<input type="hidden" name="login" value=<?php echo $login; ?>>
+					<input type="submit" name="btn">
+				</form>
+			</td>
+		</tr>
 		<?php 
 
 		}else{

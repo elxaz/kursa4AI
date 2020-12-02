@@ -27,7 +27,7 @@
 		<div class="dropdown">
 		<button onclick="myFunction()" class="dropbtn">Фильтры</button>
 		  <div id="myDropdown" class="dropdown-content">
-		    <form method="GET" action="cgi/search.php">
+		    <form method="GET" action="search.php">
 		    	<input type="text" name="filmSearch" placeholder="Название фильма" id="myInput">
 		    	<br>
 		    	<input type="submit" name="btn" value="Поиск" id="myInputBtn">
@@ -56,7 +56,6 @@
 				$link_del = "delete_login_photo.php?login=".$login;
 				$id = $_SESSION['logged_user']->id;
 				$link_del_acc = "delete_acc.php?id=" . $id . "&login=" . $login;
-
 				$stock = '../user_login_img/stock.png';
 
 			?>
@@ -75,6 +74,7 @@
 			<?php echo "<a href = " .  $link_ch . ">Изменить аватара</a>"; ?>
 			<?php echo "<a href= " . $link_del . ">Удалить фото профиля</a>" ?>
 			<?php echo "<a href= " . $link_del_acc . ">Удалить профиль</a>" ?>
+			<?php echo "<a href= \"addFilm.php\">Добавить фильм</a>" ?>;
 			<h2>Привет, <?php echo $_SESSION['logged_user']->login; ?>!</h2> <br/>
 			<a href="logout.php">Выйти</a>
 		</div>
@@ -107,7 +107,7 @@
 		<div class="dropdown">
 		<button onclick="myFunction()" class="dropbtn">Фильтры</button>
 		  <div id="myDropdown" class="dropdown-content">
-		    <form method="GET" action="cgi/search.php">
+		    <form method="GET" action="search.php">
 		    	<input type="text" name="filmSearch" placeholder="Название фильма" id="myInput">
 		    	<br>
 		    	<input type="submit" name="btn" value="Поиск" id="myInputBtn">

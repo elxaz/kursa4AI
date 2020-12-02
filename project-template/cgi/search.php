@@ -28,7 +28,7 @@
 
 	    $url = $type.$id;
 
-	 	header("Location: http://localhost:8080/cgi/show.php?$url");//посылание гет запроса	
+	 	header("Location:show.php?$url");//посылание гет запроса	
 	}else{
 		echo "<div class=\"validation\">Фильма с таким названием не найдено</div>";
 
