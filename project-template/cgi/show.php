@@ -119,9 +119,18 @@
         $i = 0;
 
         echo "<table class = \"filmtable\" align=\"center\"> ";
-       
+        
+        if (preg_match('(Android)', $_SERVER['HTTP_USER_AGENT'])
+            ||preg_match('(iPod)', $_SERVER['HTTP_USER_AGENT'])
+            ||preg_match('(iPhone)', $_SERVER['HTTP_USER_AGENT'])
+        ) {
+            $num = 1;
+        }else {
+            $num = 4;
+        }
+
         foreach ($posters as $key => $value) {
-            if ($i >= 4) {//количество картинок в ряду
+            if ($i >= $num) {//количество картинок в ряду
                 echo "</tr>";
                 $i = 0;
                 echo "<tr>";
@@ -129,7 +138,7 @@
                $i++;
                echo "<th>";
                echo "<div class=\"plates\">";            
-               echo "<a href=\"http://localhost:8080/cgi/view.php?id=$id[$key]\"><img src=\"$posters[$key]\" width=\"201\" height=\"300\" class = \"posterInDiv\"></a>"; 
+               echo "<a href=\"http://192.168.1.6:8080/cgi/view.php?id=$id[$key]\"><img src=\"$posters[$key]\" width=\"201\" height=\"300\" class = \"posterInDiv\"></a>"; 
                echo "<xmp class = \"filmNameDiv\">$names[$key]</xmp>";
                echo "</div>";
                echo "</th>"; 
