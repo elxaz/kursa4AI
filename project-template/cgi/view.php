@@ -144,7 +144,7 @@
 		  <p>
 		    <label>Комментарировать:</label>
 		    <br />
-		    <textarea name="text_comment" placeholder="Оставить комментарий" id="comment" cols="40" rows="7"></textarea><!-- берем текст комментария -->
+		    <textarea name="text_comment" required placeholder="Оставить комментарий" id="comment" cols="40" rows="7"></textarea><!-- берем текст комментария -->
 		    <br><br>
 		   </p>
 		  	<input type="hidden" name="user_login" value= <?php echo "\"".$login."\""; ?>><!-- берем логи пользователя -->
