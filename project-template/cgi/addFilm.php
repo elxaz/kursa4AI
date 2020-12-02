@@ -1,6 +1,34 @@
-<?php //для того что бы никто кроме админа не мог добавлять фильмы
+<?php 
 	require_once 'db.php';
-?>
+	 if (isset($_POST) && !empty($_POST)) {
+	 	$isFilm = R::findOne('film', 'name = ?', [$_POST['filmName']]);
+	 	$login = $_SESSION['logged_user']->login;
+	 	//проверка на пустоту формы 
+	 	if ( !empty($_POST['filmName']) && !empty($_POST['filmURL']) && isset($login) && $isFilm->year != $_POST['year']) {//проверка на валидность фильма
+	 		// Добавление фильма
+	 		$film = R::dispense('film');
+			$film->name = $_POST['filmName'];
+			$film->country = $_POST['country'];	
+			$film->link = $_POST['filmURL'];
+			$film->genre = $_POST['genre'];
+			$film->year = $_POST['year'];
+			$film->description = $_POST['description'];
+			$film->director = $_POST['director'];
+			$film->poster = $_POST['poster'];
+			$film->rating = 0;
+			$film->voises = 1;
+			$film->owner = $login;
+			echo "
+			<script type='text/javascript'>
+					alert('Фильм был добавлен.')
+			</script>";
+			R::store($film);
+	 	}else{
+	 		echo "<script>alert(\"Что-то пошло не так.\")</script>";
+	 	}	
+	 }
+	 	
+	 ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +37,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="../styles/template.css">
 	<link rel="shortcut icon" href="../img/smallest.png" type="image/x-icon">
-	<title>Addidng film</title>
+	<title>Добавления фильма</title>
 </head>
 <body>
 
@@ -21,20 +49,6 @@
 		<td>
 		<a href="../index.php"><img src="../img/smalllogo.png" class="smalllogo"></a>
 		<a href="index.php"><img src="../img/login.png" class="loginImg"></a>
-		</td>
-		<td>
-		<?php 
-		if (!empty($_SESSION)) {
-			$login = $_SESSION['logged_user']->login;
-
-			if ($login === 'admin') {
-				echo "<a href=\"addFilm.php\">Add film</a>";
-				// echo "<td>";
-				// echo "<a href=\"cgi\deleteFilm.php\">Delete film</a>";
-				// echo "</td>";
-			}
-		}
-		?>
 		</td>
 		<td>
 		<div class="dropdown">
@@ -62,20 +76,17 @@
 	</div>
 	<div class="adder" align="center">
 
-	 	<h2>Adding film</h2>
-	 	<form method="POST">
+	 	<h2>Добавления фильма</h2>
+	 	<form method="POST" action="addFilm.php">
 	 	 	<input type="text" name="filmName" align="center" placeholder="Name" class="add"><br><br>
 	 	 	<input type="text" name="filmURL" align="center"  placeholder="URL" class="add"><br><br>
 	 	 	<input type="text" name="genre" align="center" placeholder="Genre" class="add"><br><br>
 	 	 	<input type="text" name="year" align="center" placeholder="Year" class="add"><br><br>
 	 	 	<input type="text" name="director" align="center"  placeholder="Director" class="add"><br><br>
 	 	 	<input type="text" name="country" align="center"   placeholder="Country" class="add"><br><br>
-	 	 	<input type="text" name="actor" align="center" placeholder="Actor" class="add"><br><br>
 	 	 	<input type="text" name="poster" align="center" v  placeholder="Link to poster" class="add"><br><br>
-	 	 	<input type="file" name="file" align="center" v  placeholder="Link to poster" class="add"><br><br>
-	 	 	<input type="textarea" name="description" align="center"  placeholder="Description" class="add"><br><br>
-
-	 	 	<input type="submit" class="addBtn">
+	 	 	<textarea type="textarea" cols="22" rows="5" name="description" align="center"  placeholder="Description" rows class="add"></textarea><br><br>
+	 	 	<input type="submit" class="addBtn"><br><br><br><br><br><br><br><br><
 	 	</form>
 	 </div>
 
@@ -92,46 +103,6 @@
 		</table>
 	</div>
 
-	 <?php 
-		if (!empty($_SESSION)) {
-			$login = $_SESSION['logged_user']->login;
-		}
-	 	@$filmCountry = $_REQUEST['country'];
-	 	@$filmName = $_REQUEST['filmName'];
-	 	@$filmURL = $_REQUEST['filmURL'];
-	 	@$filmGenre = $_REQUEST['genre'];
-	 	@$filmYear = $_REQUEST['year'];
-	 	@$filmDescription = $_REQUEST['description'];
-	 	@$filmDirector = $_REQUEST['director'];
-	 	@$filmActor = $_REQUEST['actor'];
-	 	@$filmPoster = $_REQUEST['poster'];
-	 	@$filmFile = $_REQUEST['file'];
-
-	 	//переменная которая используеться для проверки на существования такого фильма в базе данных
-	 	@$isFilm = R::findOne('film', 'name = ?', [$filmName]);
-	 	//проверка на пустоту формы 
-	 	if (!empty($filmName)&&!empty($filmURL)) {
-	 		// Добавление фильма
-	 		$film = R::dispense('film');
-			$film->name = $filmName;
-			$film->country = $filmCountry;
-			$film->link = $filmURL;
-			$film->genre = $filmGenre;
-			$film->year = $filmYear;
-			$film->description = $filmDescription;
-			$film->director = $filmDirector;
-			$film->actor = $filmActor;
-			$film->poster = $filmPoster;
-			$film->rating = 0;
-			$film->voises = 1;
-			$film->owner = $login;
-
-			echo "
-			<script type='text/javascript'>
-					alert('Film has been added!')
-			</script>";
-			R::store($film);
-	 	}	
-	 ?>
+	 
 </body>
 </html>
