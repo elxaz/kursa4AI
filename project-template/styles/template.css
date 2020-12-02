@@ -3,6 +3,9 @@ body{
     width: 99%;
     height: 99%;
 }
+table label{
+    color: white;
+}
 .headerTable{
     width: 100%;
     height: 10%;
