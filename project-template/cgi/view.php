@@ -169,7 +169,13 @@
 
 		<tr>
 			<td>
-				<a href="donation.php">Пожертвовать автору</a>
+				<label>Пожертвовать автору:</label>
+				<form method="GET" action="donation.php">
+					<input type="text" required="" name="quantity" placeholder="Количество">
+					<input type="hidden" name="id" value=<?php echo $id; ?>>
+					<input type="hidden" name="login" value=<?php echo $login; ?>>
+					<input type="submit" name="btn">
+				</form>
 			</td>
 		</tr>
 		<?php 
@@ -181,6 +187,7 @@
 		?>
 			</td>
 		</tr>
+		
 		
 		
 	</table>
@@ -350,7 +357,7 @@
 			<td>
 				<label>Пожертвовать автору:</label>
 				<form method="GET" action="donation.php">
-					<input type="text" name="quantity" placeholder="Количество">
+					<input type="text" id="1" required="" name="quantity" placeholder="Количество">
 					<input type="hidden" name="id" value=<?php echo $id; ?>>
 					<input type="hidden" name="login" value=<?php echo $login; ?>>
 					<input type="submit" name="btn">
