@@ -8,6 +8,9 @@ body{
     height: 10%;
     background: grey;
 }
+.newtab{
+    color: white;
+}
 
 .log_img{
     height: 40px;

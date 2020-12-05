@@ -9,6 +9,11 @@
  	 	$rating = $film['rating'];
  	 	$voises = $film['voises'];
  	 	$owner = $film['owner'];
+//////////////////////////////////////////////////////////
+ 	 	$director = $film['director'];
+ 	 	$year = $film['year'];
+ 	 	$country = $film['country'];
+ 	 	$genre = $film['genre'];
 
  	 	if (preg_match('(Android)', $_SERVER['HTTP_USER_AGENT'])
 			||preg_match('(iPod)', $_SERVER['HTTP_USER_AGENT'])
@@ -82,12 +87,44 @@
 				 ?>
 			</td>
 		</tr>
+
 		<tr>
 			<td>
 				<!-- описание -->
 				<p><?php echo "$description"; ?></p>
 			</td>
 		</tr>
+		<tr>
+			<td><!-- режисер -->
+				<?php 
+					echo "Режисер : $director";
+				 ?>
+			</td>
+		</tr>
+		<tr><!-- год -->
+			<td>
+				<?php 
+					echo "Год : $year";
+				 ?>
+			</td>
+		</tr>
+		<tr>
+			<td>
+		<tr>
+			<td><!-- страна -->
+				<?php 
+					echo "Страна : $country";
+				 ?>
+			</td>
+		</tr>
+		<tr><!-- жанр -->
+			<td>
+				<?php 
+					echo "Жанр : $genre";
+				 ?>
+			</td>
+		</tr>
+
 		<tr>
 			<td>
 				<!-- Видео -->
@@ -247,20 +284,15 @@
 	</div>
 <!-- Вся страничка с контентом -->
 <div class="film" align="center">
-		<table cellpadding="10">
+		<table cellpadding="10" class="newtab">
 		<div class="filmHead">
 			<!-- Постер -->
-			<th>
+			<tr>
 				<td align="center">
 					<img src="<?php echo "$poster" ?>" width="189" height="255" alt="lorem">
 					<p>Рейтинг: <?php echo round($rating/$voises, 2); ?></p>
 				</td>
-			</th>
-			
-
-			
-			<td></td><td></td><td></td>
-			<td>
+				<td>
 			<!-- Имя фильма -->
 				<h2><?php echo "$name"; ?></h2>
 				<?php 
@@ -272,11 +304,52 @@
 					}
 				}
 				 ?>
+				<!-- описание -->
+					<p><?php echo "$description"; ?></p>
+				</td>
+
+					<td>
+						<tr>
+							<td>
+							<?php 
+								echo "Режиссер : $director";
+								?>
+							
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<?php 
+									echo "Год : $year";
+								 ?>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<?php 
+									echo "Страна : $country";
+								 ?>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<?php 
+									echo "Жанр : $genre";
+								 ?>
+							</td>
+						</tr>
+					</td>
+				
+				
+
 			
-			<!-- Описание фильмов -->
+			</tr>
+
+
 			
-				<p><?php echo "$description"; ?></p>
-			</td>
+
+			
+		
 		</div>
 		</table>
 
